@@ -33,7 +33,7 @@
                   <div class="row">
                     <div class="col-sm-2 col-xs-12">
                       {{flight.Airlane}}
-                      <input type="text" class="faa-sm flight-number" [(ngModel)]="flight.FlightID">
+                      <input type="hidden" class="faa-sm flight-number" [(ngModel)]="flight.FlightID">
                     </div>
                     <div class="col-sm-2 col-xs-12">
                       <h3>{{flight.ArrivalTime}}</h3>
