@@ -247,8 +247,8 @@ export class AllFlightsComponent implements OnInit {
           this.isMessage[i] = true;
         } else {
           this.isMessage[i] = false;
-          this.calculateTotalPrice(i);
         }
+        this.calculateTotalPrice(i);
         if (this.person[i] > 1) {
           this.isDesibled[i] = false;
         }
