@@ -1,0 +1,59 @@
+.form-control {
+    border: 0;
+    background:transparent;
+}
+
+input[type="text"], textarea, select {
+    outline: none;
+    box-shadow:none !important;
+    border: 0 !important;
+    font-size: 1.5em;
+    font-weight: normal;
+    padding: 0 10px;
+}
+
+form {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+label {
+    padding: 10px;
+    border-left: 1px solid #eee;
+}
+
+.fa {
+    font-size: 2em;
+    color: dodgerblue;
+}
+
+.inline-all {
+    display: inline;
+}
+
+.select-style select, #datepicker, .input-group-addon {
+    background:transparent;
+}
+
+.input-group-addon {
+    border: none;
+}
+
+#datepicker { width: 100%;}
+
+#datepicker .form-control { width:100px; }
+
+.panel-default { margin-bottom: -5px; border-radius: 0; }
+
+.row { margin-left: 0; margin-right: 0; }
+
+hr { margin: 10px 0; background: #ccc; }
+
+.form-inline { margin-bottom: 10px; background: rgba(255,255,255,0.8); border: none; }
+
+input[type="number"] {
+    width: 40px;
+    border: none;
+}
+
+

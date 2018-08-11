@@ -1,0 +1,467 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*@import "~bootstrap/dist/css/bootstrap.css";*/
+/*@import "../node_modules/angular-calendar/css/angular-calendar.css";*/
+
+html, body * {
+    overflow-y:auto;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;   
+}
+
+h1 {
+  font-size: 28px;
+  color: #eee;
+}
+
+.color-bottom { border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+.sticky-middle { padding: 40px 0;}
+.padding-bottom { padding-bottom: 10px; }
+
+app-root { display: block; position: absolute; background: transparent; width: 100%; height: auto; margin: 0 auto; }
+
+select, input { background: transparent; }
+
+html { 
+  background: url('assets/images/cheap-flights-blog.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.table {
+  background: rgba(255,255,255,.8);
+}
+
+header, footer {
+  background: transparent !important;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  color: #333 !important;
+  text-align: center;
+}
+
+header h1 { text-shadow: 2px 2px 4px #000000; }
+.cursor-pointer { cursor: pointer !important; }
+
+.col-xs-20 {
+    width: 20%;
+}
+
+.padding-15 {
+  padding:15px;
+}
+.loader {
+  display: block;
+  padding: 15px;
+}
+
+.edit, .update { margin-left: 10px !important; }
+.approval, .edit, .update { padding-bottom: 5px !important; }
+/*.btn-booking:eq(2), .btn-booking:eq(3) { margin-left: 5px; }*/
+.flight-number { width: 30px; height: 30px; }
+.validation-error { color: tomato; }
+
+aside, section { float: left; background: rgba(255,255,255,.7);  }
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,nav,section,summary {
+    display: block;
+}
+.btn-booking {
+  color: #eee;
+  background-color: DodgerBlue;
+}
+.btn-booking:hover, .btn-booking:focus, .btn-booking:active, .btn-booking.active, .open>.dropdown-toggle.btn-booking {
+  color: #fff;
+  background-color: DodgerBlue;
+  border-color: #285e8e;
+}
+
+select::-ms-expand {
+    display: none;
+}
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+/************ Style Select Dropdown *************/
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    font-family: Arial;
+  }
+  .custom-select select {
+    display: none; /*hide original SELECT element:*/
+  }
+  .select-selected {
+    background-color: DodgerBlue;
+  }
+  /*style the arrow inside the select element:*/
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  /*point the arrow upwards when the select box is open (active):*/
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  /*style the items (options), including the selected item:*/
+  .select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+  }
+  /*style items (options):*/
+  .select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  /*hide the items when the select box is closed:*/
+  .select-hide {
+    display: none;
+  }
+  .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+/*************************************/
+.select-style {
+    overflow: hidden;
+    background: #fafafa;
+    position: relative;
+    /*background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;*/
+}
+
+.select-style select {
+    padding: 5px 8px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+.select-style select .select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+
+  .input-group .btn { padding: 0; }
+  .w-20 { width: 20px; }
+
+  .pl-0 { width: 0; }
+
+  .position-fixed { 
+    position: fixed; 
+    top: 7%; 
+    right: 7%; 
+    float: right; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    background: DodgerBlue; 
+    color: #eee;
+    text-align: center; 
+    line-height: 50px;
+    vertical-align: middle;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .back-to-top { 
+    display:none;
+    position: fixed; 
+    bottom: 7%; 
+    right: 7%; 
+    float: right; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    background: DodgerBlue; 
+    color: #eee;
+    text-align: center; 
+    line-height: 50px;
+    vertical-align: middle;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  a.position-fixed { text-decoration: none; }
+  a.position-fixed:hover { color: #eee; }
+
+
+  .position-fixed h2 { color: #000; }
+  .position-absolute { 
+    position: absolute; 
+    top: 3%; 
+    left: 10%; 
+    padding: 0 5px; 
+    background: transparent; 
+    float: left; 
+    z-index: 101;
+  }
+  .position-absolute .booking-card { 
+    padding:0 20px 20px 20px;
+    background: #eee; 
+    margin-bottom: 10px; 
+    width: 100%; 
+    height: auto; 
+    text-align: center; 
+    border-radius: 4px; 
+    text-align: center; 
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .booking-card-body { height: 100% !important; overflow-y: hidden; }
+  .booking-card-title { background: DodgerBlue; padding: 15px; color: #eee; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+  .card-link { border-radius: 4px; }
+  .blue-color { color: DodgerBlue !important; }
+  .white-color { color: white !important; }
+  .faa-xs { font-size: 14px !important; }
+  .faa-sm { font-size: 20px !important; }
+  .faa-sm1 { font-size: 22px !important; }
+  .faa-md { font-size: 26px !important; }
+  .faa-lg { font-size: 32px !important; }
+
+/*************************************/
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+/*************************************/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*************************************/
+@-webkit-keyframes anim {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes anim {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@-moz-keyframes anim {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@-o-keyframes anim {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@-ms-keyframes anim {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.grow {
+  -webkit-animation: anim .3s ease-in-out;
+     -moz-animation: anim .3s ease-in-out;
+     -ms-transition: anim .3s ease-in-out;
+       -o-animation: anim .3s ease-in-out;
+          animation: anim .3s ease-in-out;
+}
+
+.anim {
+  width: 100%;
+  opacity: 0;
+  animation-name: anim;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+li:nth-child(2) > .anim {
+  animation-delay: 1s;
+}
+
+li:nth-child(3) > .anim {
+  animation-delay: 2s;
+}
+
+li:nth-child(4) > .anim {
+  animation-delay: 3s;
+}
+
+li:nth-child(5) > .anim {
+  animation-delay: 4s;
+}
+
+li:nth-child(6) > .anim {
+  animation-delay: 5s;
+}
+
+li:nth-child(7) > .anim {
+  animation-delay: 6s;
+}
+
+li:nth-child(8) > .anim {
+  animation-delay: 7s;
+}
+
+li:nth-child(9) > .anim {
+  animation-delay: 8s;
+}
+
+li:nth-child(10) > .anim {
+  animation-delay: 9s;
+}
+
+li:nth-child(11) > .anim {
+  animation-delay: 10s;
+}
+
+/*************************************/
+@media only screen and (max-width: 575px) { 
+    .form-group { border-bottom: 1px solid #eee; }
+    .form-group:last-child { padding: 0 20px; }
+    .flight-info { border-bottom: 1px solid #999; padding-top: 15px; padding-bottom: 15px; }
+    .position-absolute { left: 3%; width: 94%; right: 3%; }
+}
