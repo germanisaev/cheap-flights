@@ -13,9 +13,9 @@ import 'rxjs/add/operator/toPromise';
 import { FlightAirlaneService } from '../shared/all-flights.service';
 import { IFlightCard } from '../shared/all-flights.service';
 
-/*
 declare var $: any;
 
+/*
 @Pipe({
   name: 'filter'
 })
@@ -139,8 +139,8 @@ export class AllFlightsComponent implements OnInit {
     };
 
     this.oStorage = {
-      baggage: false;
-      food: false;
+      baggage: false,
+      food: false,
     };
 
     this.flights = [];
