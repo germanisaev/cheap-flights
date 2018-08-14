@@ -1,6 +1,13 @@
 .form-control {
     border: 0;
-    background:transparent;
+    background: transparent;
+}
+
+.search-control {
+    border: 1px solid #ddd;
+    background: transparent;
+    /*border-radius: 2px;*/
+    width: 80%;
 }
 
 input[type="text"], textarea, select {
@@ -19,8 +26,10 @@ form {
 
 label {
     padding: 10px;
-    border-left: 1px solid #eee;
 }
+
+.plr-0 .d-inline-block { border-left: 1px solid #999 !important; }
+.plr-0 .d-inline-block:first-child { border-left: none; }
 
 .fa {
     font-size: 2em;

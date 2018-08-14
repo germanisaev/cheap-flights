@@ -11,6 +11,7 @@
         "DepartureTime": "05:50",
         "ArrivalDate": "2018-08-17",
         "ArrivalTime": "09:55",
+        "FlightTime": "04:05",
         "FlightPrice": "350",
         "Airlane": "Ryanair",
         "Capacity": "0"
@@ -27,6 +28,7 @@
         "DepartureTime": "05:50",
         "ArrivalDate": "2018-08-24",
         "ArrivalTime": "09:55",
+        "FlightTime": "04:35",
         "FlightPrice": "350",
         "Airlane": "EasyJet",
         "Capacity": "3"
@@ -43,8 +45,9 @@
         "DepartureTime": "15:50",
         "ArrivalDate": "2018-08-17",
         "ArrivalTime": "19:05",
+        "FlightTime": "04:45",
         "FlightPrice": "250",
-        "Airlane": "Air Berlin",
+        "Airlane": "AirBerlin",
         "Capacity": "7"
     },
     {
@@ -59,8 +62,9 @@
         "DepartureTime": "21:50",
         "ArrivalDate": "2018-08-24",
         "ArrivalTime": "23:05",
+        "FlightTime": "04:15",
         "FlightPrice": "350",
-        "Airlane": "Wizz Air",
+        "Airlane": "WizzAir",
         "Capacity": "12"
     },
     {
@@ -75,8 +79,9 @@
         "DepartureTime": "05:50",
         "ArrivalDate": "2018-08-17",
         "ArrivalTime": "09:55",
+        "FlightTime": "04:55",
         "FlightPrice": "450",
-        "Airlane": "Wizz Air",
+        "Airlane": "WizzAir",
         "Capacity": "10"
     },
     {
@@ -91,8 +96,9 @@
         "DepartureTime": "05:50",
         "ArrivalDate": "2018-08-24",
         "ArrivalTime": "09:55",
+        "FlightTime": "04:20",
         "FlightPrice": "450",
-        "Airlane": "Wizz Air",
+        "Airlane": "WizzAir",
         "Capacity": "4"
     },
     {
@@ -107,8 +113,9 @@
         "DepartureTime": "10:50",
         "ArrivalDate": "2018-08-17",
         "ArrivalTime": "13:55",
+        "FlightTime": "04:10",
         "FlightPrice": "400",
-        "Airlane": "Air Berlin",
+        "Airlane": "AirBerlin",
         "Capacity": "2"
     },
     {
@@ -123,6 +130,7 @@
         "DepartureTime": "05:50",
         "ArrivalDate": "2018-08-24",
         "ArrivalTime": "09:55",
+        "FlightTime": "04:25",
         "FlightPrice": "300",
         "Airlane": "Ryanair",
         "Capacity": "1"
@@ -139,6 +147,7 @@
         "DepartureTime": "05:50",
         "ArrivalDate": "2018-08-17",
         "ArrivalTime": "09:55",
+        "FlightTime": "04:45",
         "FlightPrice": "450",
         "Airlane": "EasyJet",
         "Capacity": "5"
@@ -155,6 +164,41 @@
         "DepartureTime": "05:50",
         "ArrivalDate": "2018-08-24",
         "ArrivalTime": "09:55",
+        "FlightTime": "04:35",
+        "FlightPrice": "350",
+        "Airlane": "Ryanair",
+        "Capacity": "9"
+    },
+    {
+        "FlightID": 11,
+        "FlightNumberFrom": "TP012",
+        "FlightNumberTo": "PT012",
+        "FlightFrom": "Tel Aviv",
+        "CodeFrom": "TLV",
+        "FlightTo": "Paris",
+        "CodeTo": "PRS",
+        "DepartureDate": "2018-08-19",
+        "DepartureTime": "15:50",
+        "ArrivalDate": "2018-08-24",
+        "ArrivalTime": "20:55",
+        "FlightTime": "05:05",
+        "FlightPrice": "350",
+        "Airlane": "Ryanair",
+        "Capacity": "12"
+    },
+    {
+        "FlightID": 12,
+        "FlightNumberFrom": "TP013",
+        "FlightNumberTo": "PT013",
+        "FlightFrom": "Tel Aviv",
+        "CodeFrom": "TLV",
+        "FlightTo": "Paris",
+        "CodeTo": "PRS",
+        "DepartureDate": "2018-08-26",
+        "DepartureTime": "05:50",
+        "ArrivalDate": "2018-08-31",
+        "ArrivalTime": "09:55",
+        "FlightTime": "04:35",
         "FlightPrice": "350",
         "Airlane": "Ryanair",
         "Capacity": "9"

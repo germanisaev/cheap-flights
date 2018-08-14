@@ -22,6 +22,7 @@ export class FlightAirlane {
     DepartureTime: string;
     ArrivalDate: string;
     ArrivalTime: string;
+    FlightTime: string;
     FlightPrice: number;
     Airlane: string;
     Capacity: number;

@@ -1,9 +1,12 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
-//import { BrowserModule } from '@angular/platform-browser';
+
+/*import { ActivatedRoute } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 //import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
+//import { ISearch } from '../shared/flight-search.interface';*/
 
 import { FlightAirlane } from '../shared/flight-card.model';
-//import { ISearch } from '../shared/flight-search.interface';
+import { FilterPipe } from '../shared/filter.component';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -12,6 +15,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { FlightAirlaneService } from '../shared/all-flights.service';
 import { IFlightCard } from '../shared/all-flights.service';
+import { SearchFlights } from '../shared/flight-card.model';
 
 declare var $: any;
 
@@ -40,7 +44,7 @@ export class FilterPipe implements PipeTransform {
 export class AllFlightsComponent implements OnInit {
 
   flights: FlightAirlane[];
-
+  oSearch: SearchFlights;
   Form: any;
   /*
   _localeKey = 'he';
@@ -60,11 +64,12 @@ export class AllFlightsComponent implements OnInit {
   TotalPrice: number[] = [];
   isMessage: boolean[] = [];
   isEdit: boolean[] = [];
-  isShow: boolean = true;
+  isShow: boolean;
+  isDown: boolean;
 
-  arrival: string = 'Tel Aviv (TLV)';
+  arrival: string;
   distination: string;
-
+  selectedOption;
   arr: any[] = [];
 
   distinations: any[] = [
@@ -75,25 +80,7 @@ export class AllFlightsComponent implements OnInit {
     { value: 'Berlin', code: 'BLN', key: '04:15' }
   ];
 
-  public form: {
-    CardID: number;
-    FlightID: number;
-    NumberFrom: string;
-    NumberTo: string;
-    PointFrom: string;
-    TimeFrom: string;
-    PointTo: string;
-    TimeTo: string;
-    MyLocation: string;
-    CodeLocation: string;
-    Distination: string;
-    CodeDistination: string;
-    Airlane: string;
-    Person: number;
-    Baggage: boolean;
-    Food: boolean;
-    Price: number;
-  };
+  public form: IFlightCard;
 
   public service: {
     baggage: number;
@@ -111,27 +98,9 @@ export class AllFlightsComponent implements OnInit {
 
   constructor(flightAirlaneService: FlightAirlaneService) {
 
+    this.arrival = 'Tel Aviv (TLV)';
     this.flightAirlaneService = flightAirlaneService;
     this.orders = [];
-    this.form = {
-      CardID: 0,
-      FlightID: 0,
-      NumberFrom: '',
-      NumberTo: '',
-      PointFrom: '',
-      TimeFrom: '',
-      PointTo: '',
-      TimeTo: '',
-      MyLocation: '',
-      CodeLocation: '',
-      Distination: '',
-      CodeDistination: '',
-      Airlane: '',
-      Person: 0,
-      Baggage: false,
-      Food: false,
-      Price: 0,
-    };
 
     this.service = {
       baggage: 50,
@@ -147,11 +116,15 @@ export class AllFlightsComponent implements OnInit {
 
     this.distination = '-1';
 
+    this.isDown = false;
+
     this.maxDate.setDate(this.maxDate.getDate() + 7);
     this.bsRangeValue = [this.bsValue, this.maxDate];
-
   }
 
+  onToggleSelect() {
+    this.isDown = !this.isDown;
+  }
   onToggle() {
     this.isShow = !this.isShow;
   }
@@ -208,11 +181,49 @@ export class AllFlightsComponent implements OnInit {
       }
       );
   }
+  /*
+  getProducts(categoryId?: number): void {
+    if (categoryId) {
+        this.productService.getProducts()
+            .then(products => {
+                this.products = products.filter((product: Product) => product.categoryId === categoryId);
+            });
+    } else {
+        this.productService.getProducts()
+            .then(products => this.products = products);
+    }
+  }
 
-  searchData(data: any[]) {
+  : Observer<FlightAirlane[]>
+  */
+  search() {
 
-    this.flightAirlaneService.searchFlights(data[0], data[1], data[2], data[3], data[4])
-      .subscribe((flightsData) => this.flights = flightsData);
+    this.oSearch = {
+      FlightFrom: 'Tel Aviv',
+      FlightTo: this.selectedOption,
+      DepartureDate: '',
+      ArrivalDate: '',
+      Person: 0
+    };
+
+    this.searchData(this.oSearch);
+  }
+
+  searchData(params: SearchFlights) {
+
+    this.flightAirlaneService.searchFlights(params)
+      .subscribe(flights => {
+        this.flights = flights.filter((flight: FlightAirlane) => flight.FlightTo === params.FlightTo
+          /*
+          {
+            valid: boolean = true;
+            if(flight.FlightFrom === params.FlightFrom)
+              valid = true;
+          }
+          */
+        );
+      });
+    /*.subscribe((flightsData) => this.flights = flightsData);*/
   }
 
   getTotalFlightsCount(): number {
@@ -227,20 +238,14 @@ export class AllFlightsComponent implements OnInit {
     this.arr.push(this.maxDate);
     this.arr.push(this.person);
 
-    this.searchData(this.arr);
+    /*this.searchData(this.arr);*/
   }
 
   onChangePlus(i: number) {
 
     if (this.person[i] <= 5) {
       if (this.flights[i].Capacity > 0) {
-        /*
-        if (this.person[i] === 1) {
-          this.flights[i].Capacity = this.flights[i].Capacity - 2;
-        } else {
-          this.flights[i].Capacity = this.flights[i].Capacity - 1;
-        }
-        */
+
         this.person[i] = this.person[i] + 1;
 
         if (Number(this.flights[i].Capacity) === Number(this.person[i])) {
@@ -260,14 +265,7 @@ export class AllFlightsComponent implements OnInit {
 
     if (this.person[i] > 0) {
       this.person[i] = this.person[i] - 1;
-      /*
-      if (this.person[i] === 1) {
-        this.flights[i].Capacity = this.flights[i].Capacity + 2;
-        this.isDesibled[i] = true;
-      } else {
-        this.flights[i].Capacity = this.flights[i].Capacity + 1;
-      }
-      */
+
       if (this.person[i] === 1) {
         this.isDesibled[i] = true;
       }
@@ -352,46 +350,9 @@ export class AllFlightsComponent implements OnInit {
       };
 
       this.flightAirlaneService
-        .createOrder(
-          this.form.CardID,
-          this.form.FlightID,
-          this.form.NumberFrom,
-          this.form.NumberTo,
-          this.form.PointFrom,
-          this.form.TimeFrom,
-          this.form.PointTo,
-          this.form.TimeTo,
-          this.form.MyLocation,
-          this.form.CodeLocation,
-          this.form.Distination,
-          this.form.CodeDistination,
-          this.form.Airlane,
-          this.form.Person,
-          this.form.Baggage,
-          this.form.Food,
-          this.form.Price
-        )
+        .createOrder(this.form)
         .subscribe(
           (CardID: number): void => {
-            /*
-            this.form.FlightID = 0;
-            this.form.NumberFrom = '';
-            this.form.NumberTo = '';
-            this.form.PointFrom = '';
-            this.form.TimeFrom = '';
-            this.form.PointTo = '';
-            this.form.TimeTo = '';
-            this.form.MyLocation = '';
-            this.form.CodeLocation = '';
-            this.form.Distination = '';
-            this.form.CodeDistination = '';
-            this.form.Airlane = '';
-            this.form.Person = 0;
-            this.form.Baggage = false;
-            this.form.Food = false;
-            this.form.Price = 0;
-            */
-            this.clearForm(this.form);
 
             this.reload();
 
@@ -400,26 +361,6 @@ export class AllFlightsComponent implements OnInit {
         )
         ;
     }
-
-  }
-
-  clearForm(form: any) {
-    form.FlightID = 0;
-    form.NumberFrom = '';
-    form.NumberTo = '';
-    form.PointFrom = '';
-    form.TimeFrom = '';
-    form.PointTo = '';
-    form.TimeTo = '';
-    form.MyLocation = '';
-    form.CodeLocation = '';
-    form.Distination = '';
-    form.CodeDistination = '';
-    form.Airlane = '';
-    form.Person = 0;
-    form.Baggage = false;
-    form.Food = false;
-    form.Price = 0;
   }
 
   ngOnInit(): void {
@@ -441,19 +382,18 @@ export class AllFlightsComponent implements OnInit {
 
   }
 
-  //--------------------------------------------
+  /*****************************************/
   calcTime() {
     let d1: number;
     let d2: number;
     d1 = Date.parse('08/10/2018 02:50:00');
     d2 = Date.parse('08/10/2018 05:55:00');
 
-    //alert(diff_minutes(d1,d2));
+    /*alert(diff_minutes(d1,d2));
     //alert(d1);
-
     //alert(d2);
     let d3: number = d2 - d1;
-    alert(msToTime(d3));
+    alert(msToTime(d2 - d1));*/
 
   }
 
@@ -466,7 +406,6 @@ export class AllFlightsComponent implements OnInit {
         (orders: IFlightCard[]): void => {
 
           this.orders = orders;
-
         }
       )
       ;
@@ -475,16 +414,15 @@ export class AllFlightsComponent implements OnInit {
   // I remove the given friend from the collection.
   public remove(order: IFlightCard): void {
 
-    //alert('save data to database by stored procedure update (airplane capacity)');
+    /*alert('save data to database by stored procedure update (airplane capacity)');
 
-    //this.flights[order.FlightID - 1].Capacity = this.flights[order.FlightID - 1].Capacity + order.Person;
+    //this.flights[order.FlightID - 1].Capacity = this.flights[order.FlightID - 1].Capacity + order.Person;*/
 
     // Optimistically remove from local collection.
     this.orders = this.orders.filter(
       (value: IFlightCard): boolean => {
 
         return (value !== order);
-
       }
     );
 
@@ -496,10 +434,8 @@ export class AllFlightsComponent implements OnInit {
           this.reload();
 
           this.flights[order.FlightID - 1].Capacity = Number(this.flights[order.FlightID - 1].Capacity) + Number(order.Person);
-
         }
-      )
-      ;
+      );
   }
 
 }
@@ -512,7 +448,7 @@ $(function () {
   }).datepicker('update', new Date());
 });
 */
-
+/*
 function diff_minutes(dt2, dt1) {
 
   var diff = (dt2.getTime() - dt1.getTime()) / 1000;
@@ -546,6 +482,7 @@ function secondsToTime(secs) {
   var seconds = Math.ceil(divisor_for_seconds);
   return minutes + ':' + seconds;
 }
+*/
 
 $(document).ready(function () {
   $(window).scroll(function () {

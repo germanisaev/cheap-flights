@@ -1,6 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+/*import { RouterModule, Routes } from '@angular/router';*/
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +14,8 @@ import { AllFlightsComponent } from './components/all-flights/all-flights.compon
 import { FlightAirlaneService } from './components/shared/all-flights.service';
 import { LocalStorageService } from './components/shared/local-storage.service';
 import { FlightCardService } from './components/shared/flight-card.service';
-/*
+/*import { FlightSearchPipe } from './components/shared/flightSearch.pipe';
+
 import { AllFlightsComponent } from './components/all-flights/all-flights.component';
 import { SearchFlightsComponent } from './components/search-flights/search-flights.component';
 import { OrderFlightComponent } from './components/order-flights/order-flight.component';
@@ -29,7 +31,8 @@ import { FlightCardService } from './components/shared/flight-card.service';
   declarations: [
     AppComponent,
     AllFlightsComponent,
-    /*SearchFlightsComponent,
+    /*FlightSearchPipe
+    SearchFlightsComponent,
     OrderFlightComponent,
     OrdersFlightComponent*/
   ],
@@ -39,7 +42,8 @@ import { FlightCardService } from './components/shared/flight-card.service';
     HttpModule,
     BrowserAnimationsModule,
     BsDatepickerModule,
-    ToastrModule
+    ToastrModule,
+    /*/RouterModule*/
   ],
   providers: [
     FlightAirlaneService,

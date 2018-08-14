@@ -1,4 +1,46 @@
+<div class="container search-container h-60">
+  <div class="row bg-white mlr-15">
+    <div class="col-sm-3 plr-0">
+      <label class="d-inline-block">
+        <i class="fa fa-map-marker faa-lg d-inline" aria-hidden="true"></i>
+        <input type="text" class="search-control d-inline h-30" name="fromSearch" [(ngModel)]="fromSearch">
+      </label>
+    </div>
+    <div class="col-sm-3 plr-0">
+      <label class="d-inline-block">
+        <i class="fa fa-map-marker faa-lg d-inline" aria-hidden="true"></i>
+        <select class="d-inline w-80" [(ngModel)]="selectedOption">
+          <option [value]="dist.value" *ngFor="let dist of distinations">{{dist.value}} ({{dist.code}})</option>
+        </select>
+      </label>
+    </div>
+    <div class="col-sm-2 plr-0">
+      <label class="d-inline-block">
+        <i class="fa fa-calendar faa-lg d-inline" aria-hidden="true"></i>
+        <input type="text" class="search-control h-30" name="departureSearch" [(ngModel)]="departureSearch">
+      </label>
+    </div>
+    <div class="col-sm-2 plr-0">
+      <label class="d-inline-block">
+        <i class="fa fa-calendar faa-lg d-inline" aria-hidden="true"></i>
+        <input type="text" class="search-control h-30" name="arrivalSearch" [(ngModel)]="arrivalSearch">
+      </label>
+    </div>
+    <div class="col-sm-1 plr-0">
+      <label class="d-inline-block">
+        <i class="fa fa-user faa-lg d-inline" aria-hidden="true"></i>
+        <input type="text" class="w-30 h-30" name="personSearch" [(ngModel)]="personSearch">
+      </label>
+    </div>
+    <div class="col-sm-1 plr-0">
+      <div class="btn-search" (click)="search()">Search</div>
+    </div>
+  </div>
+</div>
+<!-- | flightSearch: fromSearch:toSearch:departureSearch:arrivalSearch:personSearch -->
+
 <div class="container position-relative">
+
   <div class="row">
     <div class="col-sm-12">
       <div class="panel-group">
@@ -9,35 +51,37 @@
                 <div class="col-sm-9 col-xs-12">
                   <div class="row">
                     <div class="col-sm-2">
-                      {{flight.Airlane}}
+                      <!--{{flight.Airlane}}-->
+                      <img src="/assets/images/logos/{{flight.Airlane}}.png" class="img-responsive">
                       <input type="hidden" class="faa-sm flight-number" [(ngModel)]="flight.FlightID">
                     </div>
                     <div class="col-sm-2 col-xs-12">
                       <h3>{{flight.DepartureTime}}</h3>
-                      <div>{{flight.FlightFrom}}</div>
+                      <h6>{{flight.FlightFrom}}</h6>
                     </div>
                     <div class="col-sm-6 col-xs-12">
                       <div class="color-bottom text-center d-block">
                         <span class="pull-left text-dark">{{flight.CodeFrom}}</span>
-                        <span class="h6 text-center text-muted">duration of flight:</span>
+                        <span class="h6 text-center text-muted">duration of flight: {{flight.FlightTime}}</span>
                         <span class="pull-right text-dark">{{flight.CodeTo}}</span>
                       </div>
                       <div class="text-center text-muted d-block h6">direct flight</div>
                     </div>
                     <div class="col-sm-2 col-xs-12">
                       <h3>{{flight.ArrivalTime}}</h3>
-                      <div>{{flight.FlightTo}}</div>
+                      <h6>{{flight.FlightTo}}</h6>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-2 col-xs-12">
-                      {{flight.Airlane}}
+                      <!--{{flight.Airlane}}-->
+                      <img src="/assets/images/logos/{{flight.Airlane}}.png" class="img-responsive">
                       <input type="hidden" class="faa-sm flight-number" [(ngModel)]="flight.FlightID">
                     </div>
                     <div class="col-sm-2 col-xs-12">
                       <h3>{{flight.ArrivalTime}}</h3>
-                      <div>{{flight.FlightTo}}</div>
+                      <h6>{{flight.FlightTo}}</h6>
                     </div>
                     <div class="col-sm-6 col-xs-12">
                       <div class="color-bottom text-center d-block">
@@ -49,7 +93,7 @@
                     </div>
                     <div class="col-sm-2 col-xs-12">
                       <h3>{{flight.DepartureTime}}</h3>
-                      <div>{{flight.FlightFrom}}</div>
+                      <h6>{{flight.FlightFrom}}</h6>
                     </div>
                   </div>
                 </div>
@@ -172,6 +216,7 @@
       </div>
     </div>
   </div>
+
   <a *ngIf="orders" class="position-fixed h4 cursor-pointer" title="Click here for your orders" (click)="onToggle()">{{orders.length}}</a>
 
   <div *ngIf="orders" [hidden]="isShow" class="position-absolute">
@@ -180,7 +225,7 @@
         <div class="booking-card anim">
           <div class="booking-card-body">
             <h5 class="booking-card-title">
-              <i class="fa fa-id-card-o faa-sm white-color" aria-hidden="true"></i>&nbsp;Card Number: {{card.CardID}}</h5>
+              <!--<i class="fa fa-id-card-o faa-sm white-color" aria-hidden="true"></i>&nbsp;-->Card Number: {{card.CardID}}</h5>
             <div class="booking-card-text h5">{{card.Airlane}} Air</div>
             <div class="booking-card-text h5">{{card.MyLocation}}&nbsp;({{card.CodeLocation}})&nbsp;
               <i class="fa fa-arrows-h faa-xs" aria-hidden="true"></i>&nbsp;{{card.Distination}}&nbsp;({{card.CodeDistination}})</div>
@@ -197,7 +242,9 @@
               <span class="blue-color h4">{{card.Person}}</span>
             </p>
             <p class="booking-card-text">Send Baggage:
-              <span class="blue-color h4" *ngIf="isEdit[i]"><i class="fa faa-sm" [ngClass]="{'fa-check-square-o':card.Baggage,'fa-square-o':!card.Baggage}" aria-hidden="true"></i></span>
+              <span class="blue-color h4" *ngIf="isEdit[i]">
+                <i class="fa faa-sm" [ngClass]="{'fa-check-square-o':card.Baggage,'fa-square-o':!card.Baggage}" aria-hidden="true"></i>
+              </span>
               <span *ngIf="!isEdit[i]">
                 <label class="switch">
                   <input type="checkbox" [(ngModel)]="card.Baggage" (change)="onChangeBaggageCard(card)">
@@ -209,7 +256,9 @@
                   -->
             </p>
             <p class="booking-card-text">Reservation Food:
-              <span class="blue-color h4" *ngIf="isEdit[i]"><i class="fa faa-sm" [ngClass]="{'fa-check-square-o':card.Food,'fa-square-o':!card.Food}" aria-hidden="true"></i></span>
+              <span class="blue-color h4" *ngIf="isEdit[i]">
+                <i class="fa faa-sm" [ngClass]="{'fa-check-square-o':card.Food,'fa-square-o':!card.Food}" aria-hidden="true"></i>
+              </span>
               <span *ngIf="!isEdit[i]">
                 <label class="switch">
                   <input type="checkbox" [(ngModel)]="card.Food" (change)="onChangeFoodCard(card)">
@@ -255,6 +304,7 @@
     data-placement="left">
     <i class="fa fa-angle-up faa-sm white-color" aria-hidden="true"></i>
   </a>
+
 </div>
 
 <!--

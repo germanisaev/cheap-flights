@@ -18,8 +18,17 @@
     "forin": true,
     "import-blacklist": [
       true,
+      "rxjs",
       "rxjs/Rx"
     ],
+    "rxjs-add": {
+      "options": [{
+        "allowElsewhere": false,
+        "allowUnused": false,
+        "file": "./src/rxjs-imports.ts"
+      }],
+      "severity": "error"
+    },
     "import-spacing": true,
     "indent": [
       true,
